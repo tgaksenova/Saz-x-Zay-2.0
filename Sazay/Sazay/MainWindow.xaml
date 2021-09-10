@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sazay"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid HorizontalAlignment="Right" Width="792">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="42"/>
             <RowDefinition />
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFF4F4F5"  Grid.Row="2" StrokeThickness="0"/>
         <Button Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,10" Width="75"/>
-        <Frame x:Name="MainFrame" Content="Frame" Grid.Row="1" />
+        <Frame x:Name="MainFrame" Source="Pages/AuthPage.xaml" Content="Frame" Grid.Row="1"/>
 
     </Grid>
 </Window>

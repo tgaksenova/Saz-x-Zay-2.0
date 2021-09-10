@@ -9,5 +9,11 @@
         <Setter Property="Foreground" Value="GreenYellow"/>
         <Setter Property="Padding" Value="2"/>
     </Style>
-    
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="#1d121d"/>
+    </Style>
+    <Style TargetType="Frame">
+        <Setter Property="Background" Value="#13cbe6"/>
+        <Setter Property="Foreground" Value="GreenYellow"/>
+    </Style>
 </ResourceDictionary>
