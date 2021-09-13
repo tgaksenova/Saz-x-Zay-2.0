@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFF4F4F5"  Grid.Row="2" StrokeThickness="0"/>
         <Button x:Name="ButtonBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,10" Width="75" Click="ButtonBack_OnClick"/>
+        <Button x:Name="Calculator" Content="Калькулятор" Grid.Row="0" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonCalculator_OnClick"/>
         <Frame x:Name="MainFrame" Source="Pages/AuthPage.xaml"  Grid.Row="1" Navigated="MainFrame_OnNavigated"/>
     </Grid>
 </Window>

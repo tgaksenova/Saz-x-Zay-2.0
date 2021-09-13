@@ -44,6 +44,11 @@ namespace Sazay
         {
             if (MainFrame.CanGoBack) MainFrame.GoBack();
         }
+
+        private void ButtonCalculator_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService?.Navigate(new Calc()); 
+        }
     }
     }
 

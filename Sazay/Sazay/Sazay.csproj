@@ -76,6 +76,9 @@
     <Compile Include="Pages\AuthPage.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Calc.xaml.cs">
+      <DependentUpon>Calc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CustomerMenu.xaml.cs">
       <DependentUpon>CustomerMenu.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Calc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
