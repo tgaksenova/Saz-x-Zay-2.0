@@ -4,16 +4,22 @@
         <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="Padding" Value="0"/>
     </Style>
+    <Style TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="#b5d5ca"/>
+    </Style>
+    <Style TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="#e0a9af"/>
+    </Style>
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
+    <Style TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
     <Style TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="Black"/>
-        <Setter Property="Foreground" Value="GreenYellow"/>
-        <Setter Property="Padding" Value="2"/>
-    </Style>
-    <Style TargetType="Grid">
-        <Setter Property="Background" Value="#1d121d"/>
-    </Style>
-    <Style TargetType="Frame">
-        <Setter Property="Background" Value="#13cbe6"/>
-        <Setter Property="Foreground" Value="GreenYellow"/>
+        <Setter Property="Background" Value="#e0a9af"/>
+        <Setter Property="Foreground" Value="#000000"/>
     </Style>
 </ResourceDictionary>
