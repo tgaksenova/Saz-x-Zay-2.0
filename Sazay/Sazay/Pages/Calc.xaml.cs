@@ -41,7 +41,14 @@ namespace Sazay.Pages
             // Получаем текст кнопки
             string s = (string)((Button)e.OriginalSource).Content;
             // Добавляем его в текстовое поле
-            textBlock.Text += s;
+            if (s!= "+/-")
+            {
+                textBlock.Text += s;
+            }
+            else
+            {
+
+            }
             Double num;
             // Пытаемся преобразовать его в число
             bool result = Double.TryParse(s, out num);
@@ -66,9 +73,20 @@ namespace Sazay.Pages
                 // Если равно, то выводим результат операции
                 if (s == "=")
                 {
+                    if (rightop == "")
+                    {
+                        textBlock.Text =textBlock.Text.Substring(0, textBlock.Text.Length-1);
+                        rightop = leftop;
+                        textBlock.Text += rightop;
+                        textBlock.Text += "=";
+                        
+                    }
+                    
                     Update_RightOp();
                     textBlock.Text += rightop;
                     operation = "";
+                    
+                   
                 }
                 // Очищаем поле и переменные
                 else if (s == "CLEAR")
@@ -85,7 +103,7 @@ namespace Sazay.Pages
                 // Получаем операцию
                 else
                 {
-                    operation = s;
+                    
                     // Если правый операнд уже имеется, то присваиваем его значение левому
                     // операнду, а правый операнд очищаем
                     if (rightop != "")
@@ -94,7 +112,7 @@ namespace Sazay.Pages
                         leftop = rightop;
                         rightop = "";
                     }
-                    
+                    operation = s;
                 }
             }
         }
@@ -116,6 +134,18 @@ namespace Sazay.Pages
                     rightop = (num1 * num2).ToString();
                     break;
                 case "/":
+                    rightop = (num1 / num2).ToString();
+                    break;
+                case "1/x":
+                    rightop = (num1 / num2).ToString();
+                    break;
+                case "Sqr(x)":
+                    rightop = (num1 / num2).ToString();
+                    break;
+                case "Sqrt(x)":
+                    rightop = (num1 / num2).ToString();
+                    break;
+                case "+/–":
                     rightop = (num1 / num2).ToString();
                     break;
 

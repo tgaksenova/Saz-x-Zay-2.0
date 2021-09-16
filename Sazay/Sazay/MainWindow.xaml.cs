@@ -24,6 +24,7 @@ namespace Sazay
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
 
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
@@ -37,6 +38,14 @@ namespace Sazay
             else
             {
                 ButtonBack.Visibility = Visibility.Visible;
+            }
+            if (page is Calc)
+            {
+                ButtonCalculator.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                ButtonCalculator.Visibility = Visibility.Visible;
             }
         }
 
