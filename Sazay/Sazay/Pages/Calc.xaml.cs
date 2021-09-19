@@ -41,13 +41,29 @@ namespace Sazay.Pages
             // Получаем текст кнопки
             string s = (string)((Button)e.OriginalSource).Content;
             // Добавляем его в текстовое поле
-            if (s!= "+/-")
+            if (s == "+/–")
             {
-                textBlock.Text += s;
+
+                if (rightop == "")
+                {
+                    textBlock.Text = textBlock.Text.Substring(0, textBlock.Text.LastIndexOf(leftop));
+                    double a = Double.Parse(leftop);
+                    a *= -1;
+                    leftop = a.ToString();
+                    textBlock.Text += leftop;
+                }
+                if (rightop != "")
+                {
+                    textBlock.Text = textBlock.Text.Substring(0, textBlock.Text.LastIndexOf(rightop));
+                    double a = Double.Parse(rightop);
+                    a *= -1;
+                    rightop = a.ToString();
+                    textBlock.Text += rightop;
+                }
             }
             else
             {
-
+                textBlock.Text += s;
             }
             Double num;
             // Пытаемся преобразовать его в число
@@ -75,18 +91,23 @@ namespace Sazay.Pages
                 {
                     if (rightop == "")
                     {
-                        textBlock.Text =textBlock.Text.Substring(0, textBlock.Text.Length-1);
-                        rightop = leftop;
-                        textBlock.Text += rightop;
-                        textBlock.Text += "=";
+                        if (textBlock.Text.Contains("Sqrt(x)")==true || textBlock.Text.Contains("Sqr(x)") == true || textBlock.Text.Contains("1/x") == true)
+                        {
+                           
+                        }
+                        else
+                        {
+                            textBlock.Text =textBlock.Text.Substring(0, textBlock.Text.Length-1);
+                            rightop = leftop;
+                            textBlock.Text += rightop;
+                            textBlock.Text += "=";
+                        }
                         
                     }
-                    
+
                     Update_RightOp();
                     textBlock.Text += rightop;
                     operation = "";
-                    
-                   
                 }
                 // Очищаем поле и переменные
                 else if (s == "CLEAR")
@@ -98,7 +119,27 @@ namespace Sazay.Pages
                 }
                 else if (s == ",")
                 {
+                    if (rightop != "")
+                    {
+                        rightop += ",";
+                    }
+                    else
                     leftop += ",";
+                }
+                else if (s== "стереть последний символ")
+                {
+                    textBlock.Text = textBlock.Text.Substring(0, textBlock.Text.Length - s.Length);
+                    if (rightop != "")
+                    {
+                        rightop = rightop.Substring(0, rightop.Length - 1);
+
+                    }
+                    else if (leftop != "")
+                    {
+                        leftop = leftop.Substring(0, leftop.Length - 1);
+
+                    }
+                    textBlock.Text = textBlock.Text.Substring(0, textBlock.Text.Length - 1);
                 }
                 // Получаем операцию
                 else
@@ -120,33 +161,58 @@ namespace Sazay.Pages
         private void Update_RightOp()
         {
             double num1 = Double.Parse(leftop);
-            double num2 = Double.Parse(rightop);
+            double num2;
             // И выполняем операцию
             switch (operation)
             {
                 case "+":
+                    num2 = Double.Parse(rightop);
                     rightop = (num1 + num2).ToString();
                     break;
                 case "-":
+                    num2 = Double.Parse(rightop);
                     rightop = (num1 - num2).ToString();
                     break;
                 case "*":
+                    num2 = Double.Parse(rightop);
                     rightop = (num1 * num2).ToString();
                     break;
                 case "/":
+                    num2 = Double.Parse(rightop);
                     rightop = (num1 / num2).ToString();
                     break;
                 case "1/x":
-                    rightop = (num1 / num2).ToString();
+                    if (rightop != "")
+                    {
+                        num2 = Double.Parse(rightop);
+                        rightop = (1/num2).ToString();
+                    }
+                    else
+                    {
+                        rightop = (1 / num1).ToString();
+                    }
                     break;
                 case "Sqr(x)":
-                    rightop = (num1 / num2).ToString();
+                    if (rightop != "")
+                    {
+                        num2 = Double.Parse(rightop);
+                        rightop = Math.Pow(num2,2).ToString();
+                    }
+                    else
+                    {
+                        rightop = Math.Pow(num1, 2).ToString();
+                    }
                     break;
                 case "Sqrt(x)":
-                    rightop = (num1 / num2).ToString();
-                    break;
-                case "+/–":
-                    rightop = (num1 / num2).ToString();
+                    if (rightop != "")
+                    {
+                        num2 = Double.Parse(rightop);
+                        rightop = Math.Sqrt(num2).ToString();
+                    }
+                    else
+                    {
+                        rightop = Math.Sqrt(num1).ToString();
+                    }
                     break;
 
             }
