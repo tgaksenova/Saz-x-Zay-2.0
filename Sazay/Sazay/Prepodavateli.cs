@@ -24,6 +24,7 @@ namespace Sazay
         public string Familia { get; set; }
         public string Im9 { get; set; }
         public string Otchestvo { get; set; }
+        public int ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uchebnii_plan> Uchebnii_plan { get; set; }

@@ -20,9 +20,11 @@ namespace Sazay
         public int Tab_nomer { get; set; }
         public string Familia { get; set; }
         public int Semestr { get; set; }
+        public Nullable<int> ID_Disciplini { get; set; }
+        public Nullable<int> ID_prepoda { get; set; }
+        public int ID { get; set; }
     
         public virtual Disciplini Disciplini { get; set; }
-        public virtual Groups Groups { get; set; }
         public virtual Prepodavateli Prepodavateli { get; set; }
     }
 }

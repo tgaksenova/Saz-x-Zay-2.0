@@ -18,16 +18,16 @@ namespace Sazay.Pages
     /// <summary>
     /// Логика взаимодействия для CustomerMenu.xaml
     /// </summary>
-    public partial class CustomerMenu : Page
+    public partial class TeacherMenu : Page
     {
-        public CustomerMenu()
+        public TeacherMenu()
         {
             InitializeComponent();
         }
 
         private void ButtonPage1_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Page2());
+            NavigationService?.Navigate(new RegistrationPage());
         }
 
         private void ButtonPage2_OnClick(object sender, RoutedEventArgs e)

@@ -42,8 +42,8 @@ namespace Sazay.Pages
                 }
                 switch (user.Role)
                 {
-                    case "Customer":
-                        NavigationService?.Navigate(new CustomerMenu());
+                    case "Teacher":
+                        NavigationService?.Navigate(new TeacherMenu());
                         break;
                     case "Director":
                         NavigationService?.Navigate(new Menu());
@@ -55,7 +55,7 @@ namespace Sazay.Pages
 
         private void ButtonRegistration_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Page2());
+            NavigationService?.Navigate(new RegistrationPage());
         }
     }
 }

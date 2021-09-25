@@ -23,6 +23,7 @@ namespace Sazay
     
         public string Naimenovanie { get; set; }
         public int chasi_obucheni9 { get; set; }
+        public int ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ekzamen> Ekzamen { get; set; }

@@ -4,44 +4,49 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Disciplini">
           <Key>
-            <PropertyRef Name="Naimenovanie" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="chasi_obucheni9" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Ekzamen">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomer_ekzamena" Type="int" Nullable="false" />
           <Property Name="data_ekzamena" Type="date" Nullable="false" />
           <Property Name="N_zach_knigi" Type="int" Nullable="false" />
           <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Disciplini" Type="int" />
+          <Property Name="ID_studenta" Type="int" />
           <Property Name="Ocenka" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
-            <PropertyRef Name="N_group" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_group" Type="int" Nullable="false" />
           <Property Name="Kolvo_Students" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Prepodavateli">
           <Key>
-            <PropertyRef Name="Tab_nomer" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="Tab_nomer" Type="int" Nullable="false" />
           <Property Name="Familia" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Im9" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Studenti">
           <Key>
-            <PropertyRef Name="N_zach_knigi" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_zach_knigi" Type="int" Nullable="false" />
           <Property Name="N_group" Type="int" Nullable="false" />
@@ -50,10 +55,12 @@
           <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Specialnost" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Otdelenie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_group" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Uchebnii_plan">
           <Key>
-            <PropertyRef Name="N_plana" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_plana" Type="int" Nullable="false" />
           <Property Name="N_group" Type="int" Nullable="false" />
@@ -61,6 +68,9 @@
           <Property Name="Tab_nomer" Type="int" Nullable="false" />
           <Property Name="Familia" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Semestr" Type="int" Nullable="false" />
+          <Property Name="ID_Disciplini" Type="int" />
+          <Property Name="ID_prepoda" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -70,77 +80,65 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Ekzamen_Disciplini">
-          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="1" />
+        <Association Name="FK_Ekzamen_Disciplini1">
+          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
           <End Role="Ekzamen" Type="Self.Ekzamen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplini">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ekzamen">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID_Disciplini" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ekzamen_Studenti">
-          <End Role="Studenti" Type="Self.Studenti" Multiplicity="1" />
+        <Association Name="FK_Ekzamen_Studenti1">
+          <End Role="Studenti" Type="Self.Studenti" Multiplicity="0..1" />
           <End Role="Ekzamen" Type="Self.Ekzamen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Studenti">
-              <PropertyRef Name="N_zach_knigi" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ekzamen">
-              <PropertyRef Name="N_zach_knigi" />
+              <PropertyRef Name="ID_studenta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Studenti_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+        <Association Name="FK_Studenti_Groups1">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
           <End Role="Studenti" Type="Self.Studenti" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
-              <PropertyRef Name="N_group" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Studenti">
-              <PropertyRef Name="N_group" />
+              <PropertyRef Name="ID_group" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Uchebnii_plan_Disciplini">
-          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="1" />
+        <Association Name="FK_Uchebnii_plan_Disciplini1">
+          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
           <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplini">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID_Disciplini" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Uchebnii_plan_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
-          <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="N_group" />
-            </Principal>
-            <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="N_group" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Uchebnii_plan_Prepodavateli">
-          <End Role="Prepodavateli" Type="Self.Prepodavateli" Multiplicity="1" />
+        <Association Name="FK_Uchebnii_plan_Prepodavateli1">
+          <End Role="Prepodavateli" Type="Self.Prepodavateli" Multiplicity="0..1" />
           <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Prepodavateli">
-              <PropertyRef Name="Tab_nomer" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="Tab_nomer" />
+              <PropertyRef Name="ID_prepoda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -152,80 +150,79 @@
           <EntitySet Name="Studenti" EntityType="Self.Studenti" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uchebnii_plan" EntityType="Self.Uchebnii_plan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Ekzamen_Disciplini" Association="Self.FK_Ekzamen_Disciplini">
+          <AssociationSet Name="FK_Ekzamen_Disciplini1" Association="Self.FK_Ekzamen_Disciplini1">
             <End Role="Disciplini" EntitySet="Disciplini" />
             <End Role="Ekzamen" EntitySet="Ekzamen" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ekzamen_Studenti" Association="Self.FK_Ekzamen_Studenti">
+          <AssociationSet Name="FK_Ekzamen_Studenti1" Association="Self.FK_Ekzamen_Studenti1">
             <End Role="Studenti" EntitySet="Studenti" />
             <End Role="Ekzamen" EntitySet="Ekzamen" />
           </AssociationSet>
-          <AssociationSet Name="FK_Studenti_Groups" Association="Self.FK_Studenti_Groups">
+          <AssociationSet Name="FK_Studenti_Groups1" Association="Self.FK_Studenti_Groups1">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Studenti" EntitySet="Studenti" />
           </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Disciplini" Association="Self.FK_Uchebnii_plan_Disciplini">
+          <AssociationSet Name="FK_Uchebnii_plan_Disciplini1" Association="Self.FK_Uchebnii_plan_Disciplini1">
             <End Role="Disciplini" EntitySet="Disciplini" />
             <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
           </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Groups" Association="Self.FK_Uchebnii_plan_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Prepodavateli" Association="Self.FK_Uchebnii_plan_Prepodavateli">
+          <AssociationSet Name="FK_Uchebnii_plan_Prepodavateli1" Association="Self.FK_Uchebnii_plan_Prepodavateli1">
             <End Role="Prepodavateli" EntitySet="Prepodavateli" />
             <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Disciplini">
           <Key>
-            <PropertyRef Name="Naimenovanie" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="Naimenovanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="chasi_obucheni9" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ekzamen" Relationship="Self.FK_Ekzamen_Disciplini" FromRole="Disciplini" ToRole="Ekzamen" />
-          <NavigationProperty Name="Uchebnii_plan" Relationship="Self.FK_Uchebnii_plan_Disciplini" FromRole="Disciplini" ToRole="Uchebnii_plan" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Ekzamen" Relationship="Self.FK_Ekzamen_Disciplini1" FromRole="Disciplini" ToRole="Ekzamen" />
+          <NavigationProperty Name="Uchebnii_plan" Relationship="Self.FK_Uchebnii_plan_Disciplini1" FromRole="Disciplini" ToRole="Uchebnii_plan" />
         </EntityType>
         <EntityType Name="Ekzamen">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomer_ekzamena" Type="Int32" Nullable="false" />
           <Property Name="data_ekzamena" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="N_zach_knigi" Type="Int32" Nullable="false" />
           <Property Name="Naimenovanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Disciplini" Type="Int32" />
+          <Property Name="ID_studenta" Type="Int32" />
           <Property Name="Ocenka" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Disciplini" Relationship="Self.FK_Ekzamen_Disciplini" FromRole="Ekzamen" ToRole="Disciplini" />
-          <NavigationProperty Name="Studenti" Relationship="Self.FK_Ekzamen_Studenti" FromRole="Ekzamen" ToRole="Studenti" />
+          <NavigationProperty Name="Disciplini" Relationship="Self.FK_Ekzamen_Disciplini1" FromRole="Ekzamen" ToRole="Disciplini" />
+          <NavigationProperty Name="Studenti" Relationship="Self.FK_Ekzamen_Studenti1" FromRole="Ekzamen" ToRole="Studenti" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
-            <PropertyRef Name="N_group" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_group" Type="Int32" Nullable="false" />
           <Property Name="Kolvo_Students" Type="Int32" />
-          <NavigationProperty Name="Studenti" Relationship="Self.FK_Studenti_Groups" FromRole="Groups" ToRole="Studenti" />
-          <NavigationProperty Name="Uchebnii_plan" Relationship="Self.FK_Uchebnii_plan_Groups" FromRole="Groups" ToRole="Uchebnii_plan" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Studenti" Relationship="Self.FK_Studenti_Groups1" FromRole="Groups" ToRole="Studenti" />
         </EntityType>
         <EntityType Name="Prepodavateli">
           <Key>
-            <PropertyRef Name="Tab_nomer" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="Tab_nomer" Type="Int32" Nullable="false" />
           <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Im9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Uchebnii_plan" Relationship="Self.FK_Uchebnii_plan_Prepodavateli" FromRole="Prepodavateli" ToRole="Uchebnii_plan" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Uchebnii_plan" Relationship="Self.FK_Uchebnii_plan_Prepodavateli1" FromRole="Prepodavateli" ToRole="Uchebnii_plan" />
         </EntityType>
         <EntityType Name="Studenti">
           <Key>
-            <PropertyRef Name="N_zach_knigi" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_zach_knigi" Type="Int32" Nullable="false" />
           <Property Name="N_group" Type="Int32" Nullable="false" />
@@ -234,12 +231,14 @@
           <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Specialnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Otdelenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ekzamen" Relationship="Self.FK_Ekzamen_Studenti" FromRole="Studenti" ToRole="Ekzamen" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Studenti_Groups" FromRole="Studenti" ToRole="Groups" />
+          <Property Name="ID_group" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Ekzamen" Relationship="Self.FK_Ekzamen_Studenti1" FromRole="Studenti" ToRole="Ekzamen" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Studenti_Groups1" FromRole="Studenti" ToRole="Groups" />
         </EntityType>
         <EntityType Name="Uchebnii_plan">
           <Key>
-            <PropertyRef Name="N_plana" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="N_plana" Type="Int32" Nullable="false" />
           <Property Name="N_group" Type="Int32" Nullable="false" />
@@ -247,9 +246,11 @@
           <Property Name="Tab_nomer" Type="Int32" Nullable="false" />
           <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Semestr" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Disciplini" Relationship="Self.FK_Uchebnii_plan_Disciplini" FromRole="Uchebnii_plan" ToRole="Disciplini" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Uchebnii_plan_Groups" FromRole="Uchebnii_plan" ToRole="Groups" />
-          <NavigationProperty Name="Prepodavateli" Relationship="Self.FK_Uchebnii_plan_Prepodavateli" FromRole="Uchebnii_plan" ToRole="Prepodavateli" />
+          <Property Name="ID_Disciplini" Type="Int32" />
+          <Property Name="ID_prepoda" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Disciplini" Relationship="Self.FK_Uchebnii_plan_Disciplini1" FromRole="Uchebnii_plan" ToRole="Disciplini" />
+          <NavigationProperty Name="Prepodavateli" Relationship="Self.FK_Uchebnii_plan_Prepodavateli1" FromRole="Uchebnii_plan" ToRole="Prepodavateli" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -259,77 +260,65 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <Association Name="FK_Ekzamen_Disciplini">
-          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="1" />
+        <Association Name="FK_Ekzamen_Disciplini1">
+          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
           <End Role="Ekzamen" Type="Self.Ekzamen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplini">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ekzamen">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID_Disciplini" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Uchebnii_plan_Disciplini">
-          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="1" />
+        <Association Name="FK_Uchebnii_plan_Disciplini1">
+          <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
           <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplini">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="Naimenovanie" />
+              <PropertyRef Name="ID_Disciplini" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ekzamen_Studenti">
-          <End Role="Studenti" Type="Self.Studenti" Multiplicity="1" />
+        <Association Name="FK_Ekzamen_Studenti1">
+          <End Role="Studenti" Type="Self.Studenti" Multiplicity="0..1" />
           <End Role="Ekzamen" Type="Self.Ekzamen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Studenti">
-              <PropertyRef Name="N_zach_knigi" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ekzamen">
-              <PropertyRef Name="N_zach_knigi" />
+              <PropertyRef Name="ID_studenta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Studenti_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+        <Association Name="FK_Studenti_Groups1">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
           <End Role="Studenti" Type="Self.Studenti" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
-              <PropertyRef Name="N_group" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Studenti">
-              <PropertyRef Name="N_group" />
+              <PropertyRef Name="ID_group" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Uchebnii_plan_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
-          <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="N_group" />
-            </Principal>
-            <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="N_group" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Uchebnii_plan_Prepodavateli">
-          <End Role="Prepodavateli" Type="Self.Prepodavateli" Multiplicity="1" />
+        <Association Name="FK_Uchebnii_plan_Prepodavateli1">
+          <End Role="Prepodavateli" Type="Self.Prepodavateli" Multiplicity="0..1" />
           <End Role="Uchebnii_plan" Type="Self.Uchebnii_plan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Prepodavateli">
-              <PropertyRef Name="Tab_nomer" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Uchebnii_plan">
-              <PropertyRef Name="Tab_nomer" />
+              <PropertyRef Name="ID_prepoda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -341,27 +330,23 @@
           <EntitySet Name="Studenti" EntityType="Self.Studenti" />
           <EntitySet Name="Uchebnii_plan" EntityType="Self.Uchebnii_plan" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Ekzamen_Disciplini" Association="Self.FK_Ekzamen_Disciplini">
+          <AssociationSet Name="FK_Ekzamen_Disciplini1" Association="Self.FK_Ekzamen_Disciplini1">
             <End Role="Disciplini" EntitySet="Disciplini" />
             <End Role="Ekzamen" EntitySet="Ekzamen" />
           </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Disciplini" Association="Self.FK_Uchebnii_plan_Disciplini">
+          <AssociationSet Name="FK_Uchebnii_plan_Disciplini1" Association="Self.FK_Uchebnii_plan_Disciplini1">
             <End Role="Disciplini" EntitySet="Disciplini" />
             <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ekzamen_Studenti" Association="Self.FK_Ekzamen_Studenti">
+          <AssociationSet Name="FK_Ekzamen_Studenti1" Association="Self.FK_Ekzamen_Studenti1">
             <End Role="Studenti" EntitySet="Studenti" />
             <End Role="Ekzamen" EntitySet="Ekzamen" />
           </AssociationSet>
-          <AssociationSet Name="FK_Studenti_Groups" Association="Self.FK_Studenti_Groups">
+          <AssociationSet Name="FK_Studenti_Groups1" Association="Self.FK_Studenti_Groups1">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Studenti" EntitySet="Studenti" />
           </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Groups" Association="Self.FK_Uchebnii_plan_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Uchebnii_plan_Prepodavateli" Association="Self.FK_Uchebnii_plan_Prepodavateli">
+          <AssociationSet Name="FK_Uchebnii_plan_Prepodavateli1" Association="Self.FK_Uchebnii_plan_Prepodavateli1">
             <End Role="Prepodavateli" EntitySet="Prepodavateli" />
             <End Role="Uchebnii_plan" EntitySet="Uchebnii_plan" />
           </AssociationSet>
@@ -377,6 +362,7 @@
               <MappingFragment StoreEntitySet="Disciplini">
                 <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
                 <ScalarProperty Name="chasi_obucheni9" ColumnName="chasi_obucheni9" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -388,6 +374,8 @@
                 <ScalarProperty Name="data_ekzamena" ColumnName="data_ekzamena" />
                 <ScalarProperty Name="N_zach_knigi" ColumnName="N_zach_knigi" />
                 <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+                <ScalarProperty Name="ID_Disciplini" ColumnName="ID_Disciplini" />
+                <ScalarProperty Name="ID_studenta" ColumnName="ID_studenta" />
                 <ScalarProperty Name="Ocenka" ColumnName="Ocenka" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -397,6 +385,7 @@
               <MappingFragment StoreEntitySet="Groups">
                 <ScalarProperty Name="N_group" ColumnName="N_group" />
                 <ScalarProperty Name="Kolvo_Students" ColumnName="Kolvo_Students" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -407,6 +396,7 @@
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
                 <ScalarProperty Name="Im9" ColumnName="Im9" />
                 <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -420,6 +410,8 @@
                 <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
                 <ScalarProperty Name="Specialnost" ColumnName="Specialnost" />
                 <ScalarProperty Name="Otdelenie" ColumnName="Otdelenie" />
+                <ScalarProperty Name="ID_group" ColumnName="ID_group" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -432,6 +424,9 @@
                 <ScalarProperty Name="Tab_nomer" ColumnName="Tab_nomer" />
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
                 <ScalarProperty Name="Semestr" ColumnName="Semestr" />
+                <ScalarProperty Name="ID_Disciplini" ColumnName="ID_Disciplini" />
+                <ScalarProperty Name="ID_prepoda" ColumnName="ID_prepoda" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

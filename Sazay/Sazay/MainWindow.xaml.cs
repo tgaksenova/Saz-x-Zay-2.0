@@ -33,19 +33,33 @@ namespace Sazay
             this.Title = $"LESSON - {page.Title}";
             if (page is AuthPage)
             {
-                ButtonBack.Visibility = Visibility.Hidden;
+                ButtonBack.Visibility = Visibility.Hidden; ButtonCalculator.Visibility = Visibility.Visible;
             }
             else
             {
-                ButtonBack.Visibility = Visibility.Visible;
+                ButtonBack.Visibility = Visibility.Visible; ButtonCalculator.Visibility = Visibility.Hidden;
             }
             if (page is Calc)
             {
                 ButtonCalculator.Visibility = Visibility.Hidden;
+                var uri = new Uri("DictionaryCalc.xaml", UriKind.Relative);
+                // загружаем словарь ресурсов
+                ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+                // очищаем коллекцию ресурсов приложения
+                Application.Current.Resources.MergedDictionaries.Clear();
+                // добавляем загруженный словарь ресурсов
+                Application.Current.Resources.MergedDictionaries.Add(resourceDict);
             }
             else
             {
-                ButtonCalculator.Visibility = Visibility.Visible;
+              
+                var uri = new Uri("Dictionary.xaml", UriKind.Relative);
+                // загружаем словарь ресурсов
+                ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+                // очищаем коллекцию ресурсов приложения
+                Application.Current.Resources.MergedDictionaries.Clear();
+                // добавляем загруженный словарь ресурсов
+                Application.Current.Resources.MergedDictionaries.Add(resourceDict);
             }
         }
 
@@ -58,6 +72,7 @@ namespace Sazay
         {
             MainFrame.NavigationService?.Navigate(new Calc()); 
         }
+        
     }
-    }
+}
 

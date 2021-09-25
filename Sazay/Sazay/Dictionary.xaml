@@ -3,6 +3,7 @@
     <Style TargetType="{x:Type Label}">
         <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="Height" Value="25"/>
     </Style>
     <Style TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="#b5d5ca"/>
@@ -13,13 +14,26 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="#FFFFFF"/>
         <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Height" Value="25"/>
     </Style>
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="Background" Value="#FFFFFF"/>
         <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Height" Value="25"/>
     </Style>
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#e0a9af"/>
         <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="150"/>
+    </Style>
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
+    <Style TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Background" Value="#FFFFFF"/>
     </Style>
 </ResourceDictionary>

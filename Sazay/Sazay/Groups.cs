@@ -18,15 +18,13 @@ namespace Sazay
         public Groups()
         {
             this.Studenti = new HashSet<Studenti>();
-            this.Uchebnii_plan = new HashSet<Uchebnii_plan>();
         }
     
         public int N_group { get; set; }
         public Nullable<int> Kolvo_Students { get; set; }
+        public int ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Studenti> Studenti { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Uchebnii_plan> Uchebnii_plan { get; set; }
     }
 }
