@@ -62,6 +62,18 @@ namespace Sazay.Pages
                         if (Password.Text == ConfirmPassword.Text)
                         {
                             MessageBox.Show($"Пользователь {FIO.Text} успешно зарегистрирован под ролью: "+Role.Text);
+                            Entities db = new Entities();
+                            User userObject = new User
+                            {
+                                FIO = FIO.Text,
+                                Login = Login.Text,
+                                Password = Password.Text,
+                                Role = Role.Text
+                            };
+                            db.User.Add(userObject);
+                            db.SaveChanges();
+                            NavigationService?.Navigate(new AuthPage());
+
                         }
                         else MessageBox.Show("Пароли не совпадают!");
                     }
