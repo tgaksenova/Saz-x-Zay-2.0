@@ -42,10 +42,10 @@ namespace Sazay.Pages
                 }
                 switch (user.Role)
                 {
-                    case "Teacher":
+                    case "Преподаватель":
                         NavigationService?.Navigate(new TeacherMenu());
                         break;
-                    case "Director":
+                    case "Директор":
                         NavigationService?.Navigate(new Menu());
                         break;
                 }
