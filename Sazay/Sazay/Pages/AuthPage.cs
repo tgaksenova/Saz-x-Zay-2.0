@@ -43,10 +43,10 @@ namespace Sazay.Pages
                 switch (user.Role)
                 {
                     case "Преподаватель":
-                        NavigationService?.Navigate(new TeacherMenu());
+                        NavigationService?.Navigate(new Menu());
                         break;
                     case "Директор":
-                        NavigationService?.Navigate(new Menu());
+                        NavigationService?.Navigate(new DirectorMenu());
                         break;
                 }
             }

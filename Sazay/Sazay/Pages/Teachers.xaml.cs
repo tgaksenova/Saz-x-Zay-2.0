@@ -16,28 +16,29 @@ using System.Windows.Shapes;
 namespace Sazay.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для CustomerMenu.xaml
+    /// Логика взаимодействия для Teachers.xaml
     /// </summary>
-    public partial class TeacherMenu : Page
+    public partial class Teachers : Page
     {
-        public TeacherMenu()
+        public Teachers()
         {
             InitializeComponent();
+            DataGridTeachers.ItemsSource = Entities.GetContext().Prepodavateli.ToList();
         }
 
-        private void ButtonPage1_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new RegistrationPage());
+
         }
 
-        private void ButtonPage2_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new AuthPage());
+            NavigationService?.Navigate(new AddEditTeachers());
         }
 
-        private void ButtonPage3_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonDel_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Menu());
+
         }
     }
 }

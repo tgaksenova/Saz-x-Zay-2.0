@@ -15,6 +15,13 @@
         <Setter Property="Background" Value="#FFFFFF"/>
         <Setter Property="Foreground" Value="#000000"/>
         <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="300"/>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="#00FFFFFF"/>
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="200"/>
     </Style>
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="Background" Value="#FFFFFF"/>
@@ -35,5 +42,16 @@
     <Style TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Foreground" Value="#000000"/>
         <Setter Property="Background" Value="#FFFFFF"/>
+    </Style>
+    <Style TargetType="DataGrid">
+        <Setter Property="RowBackground" Value="#d1eefc"/>
+        <Setter Property="AlternatingRowBackground" Value="#fffcd6"/>
+        <Setter Property="AlternationCount" Value="1"/>
+    </Style>
+    <Style TargetType="{x:Type DataGridTextColumn}">
+    <Setter Property="Width" Value="400*"/>
+    </Style>
+    <Style TargetType="{x:Type DataGridTemplateColumn}">
+        <Setter Property="Width" Value="*"/>
     </Style>
 </ResourceDictionary>

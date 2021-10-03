@@ -1,4 +1,4 @@
-﻿<Page x:Class="Sazay.Pages.TeacherMenu"
+﻿<Page x:Class="Sazay.Pages.DirectorMenu"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:Sazay.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="TeacherMenu">
+      Title="DirectorMenu">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="245"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,8 +19,8 @@
             <ColumnDefinition Width="257"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Переход 1" Click="ButtonPage1_OnClick" Grid.Column="1" Grid.Row="1" Height="20" VerticalAlignment="Top"/>
-        <Button Content="Переход 2" Click="ButtonPage2_OnClick" Grid.Column="1" Grid.Row="1" Height="20" VerticalAlignment="Top" Margin=" 0,25,0,0"/>
-        <Button Content="Переход 3" Click="ButtonPage3_OnClick" Grid.Column="1" Grid.Row="1" Height="20" VerticalAlignment="Top" Margin=" 0,50,0,0"/>
+        <Button Content="Группы" Click="Groups_OnClick" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Top" Margin=" 0,10,0,0"/>
+        <Button Content="Дисциплины" Click="Classes_OnClick" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Top" Margin=" 0,115,0,0"/>
+        <Button Content="Преподаватели" Click="Teachers_OnClick" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Top" Margin=" 0,210,0,0"/>
     </Grid>
 </Page>
