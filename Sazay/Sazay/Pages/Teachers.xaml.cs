@@ -28,17 +28,43 @@ namespace Sazay.Pages
 
         private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddEditTeachers((sender as Button).DataContext as Prepodavateli));
         }
 
         private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new AddEditTeachers());
+            NavigationService?.Navigate(new AddEditTeachers(null));
         }
 
         private void ButtonDel_OnClick(object sender, RoutedEventArgs e)
         {
+            var TeachersForRemoving = DataGridTeachers.SelectedItems.Cast<Prepodavateli>().ToList();
 
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {TeachersForRemoving.Count()} элементов?", "Внимание",
+                            MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
+                {
+                    Entities.GetContext().Prepodavateli.RemoveRange(TeachersForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
+
+                    DataGridTeachers.ItemsSource = Entities.GetContext().Prepodavateli.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+
+        }
+
+        private void Teachers_VisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridTeachers.ItemsSource = Entities.GetContext().Prepodavateli.ToList();
+            }
         }
     }
 }

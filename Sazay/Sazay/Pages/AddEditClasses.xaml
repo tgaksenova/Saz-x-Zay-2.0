@@ -20,8 +20,8 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Наименование" VerticalAlignment="Top" Margin="0,10,0,0"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Часы обучения" VerticalAlignment="Top" Margin="0,10,0,0"/>
-        <TextBox x:Name="Naimenovanie" Text="" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,10,0,0"/>
-        <TextBox x:Name="Hours" Text="" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,10,0,0"/>
+        <TextBox x:Name="Naimenovanie" Text="{Binding Naimenovanie}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,10,0,0"/>
+        <TextBox x:Name="Hours" Text="{Binding chasi_obucheni9}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,10,0,0"/>
         <Button Content="Сохранить" Click="Save_OnClick" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="125,0,0,10"/>
     </Grid>
 </Page>
