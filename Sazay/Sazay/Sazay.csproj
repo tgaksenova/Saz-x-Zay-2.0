@@ -109,6 +109,9 @@
     <Compile Include="Pages\Classes.xaml.cs">
       <DependentUpon>Classes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\StudentsList.xaml.cs">
+      <DependentUpon>StudentsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Groups.xaml.cs">
       <DependentUpon>Groups.xaml</DependentUpon>
     </Compile>
@@ -118,8 +121,14 @@
     <Compile Include="Pages\DirectorMenu.xaml.cs">
       <DependentUpon>DirectorMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TeacherMenu.xaml.cs">
+      <DependentUpon>TeacherMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Teachers.xaml.cs">
       <DependentUpon>Teachers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserList.xaml.cs">
+      <DependentUpon>UserList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prepodavateli.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -177,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\StudentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Groups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,7 +202,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\TeacherMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Teachers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Resources\StudentsPhotos\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="KEKIN.ico" />
@@ -248,6 +270,14 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\орехус.jpg" />
+    <Resource Include="Resources\UserPhotos\xiao.jpg" />
+    <Resource Include="Resources\UserPhotos\KEKIN.jpg" />
+    <Resource Include="Resources\UserPhotos\image2.png" />
+    <Resource Include="Resources\UserPhotos\simps.jpg" />
+    <Resource Include="Resources\UserPhotos\SOZkV6_-N0g.jpg" />
+    <Resource Include="Resources\UserPhotos\Ганьюечка.jpeg" />
+    <Resource Include="Resources\image3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

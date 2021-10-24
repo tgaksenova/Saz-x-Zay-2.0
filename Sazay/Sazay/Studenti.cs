@@ -29,6 +29,7 @@ namespace Sazay
         public string Otdelenie { get; set; }
         public Nullable<int> ID_group { get; set; }
         public int ID { get; set; }
+        public string Photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ekzamen> Ekzamen { get; set; }

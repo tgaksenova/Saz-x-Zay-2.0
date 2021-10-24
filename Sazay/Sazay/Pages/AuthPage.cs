@@ -27,30 +27,34 @@ namespace Sazay.Pages
 
         private void ButtonEnter_OnClick(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TextBoxLogin.Text)|| string.IsNullOrEmpty(PasswordBox.Password))
+            Auth(TextBoxLogin.Text, PasswordBox.Password);
+        }
+        public bool Auth(string login, string password) 
+        {
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Введите логин и пароль!");
-                return;
+                return false;
             }
             using (var db = new Entities())
             {
-                var user = db.User.AsNoTracking().FirstOrDefault(u => u.Login == TextBoxLogin.Text && u.Password == PasswordBox.Password);
-                if(user == null)
+                var user = db.User.AsNoTracking().FirstOrDefault(u => u.Login == login && u.Password == password);
+                if (user == null)
                 {
                     MessageBox.Show("Пользователь с такими данными не найден!");
-                    return;
+                    return false;
                 }
                 switch (user.Role)
                 {
                     case "Преподаватель":
-                        NavigationService?.Navigate(new Menu());
+                        NavigationService?.Navigate(new TeacherMenu());
                         break;
                     case "Директор":
                         NavigationService?.Navigate(new DirectorMenu());
                         break;
                 }
+                return true;
             }
-
         }
 
         private void ButtonRegistration_OnClick(object sender, RoutedEventArgs e)

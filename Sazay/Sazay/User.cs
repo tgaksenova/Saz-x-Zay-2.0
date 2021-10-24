@@ -19,5 +19,6 @@ namespace Sazay
         public string Role { get; set; }
         public string FIO { get; set; }
         public int ID { get; set; }
+        public string Photo { get; set; }
     }
 }

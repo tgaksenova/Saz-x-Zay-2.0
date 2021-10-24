@@ -57,6 +57,7 @@
           <Property Name="Otdelenie" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_group" Type="int" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Uchebnii_plan">
           <Key>
@@ -81,6 +82,7 @@
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Ekzamen_Disciplini1">
           <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
@@ -235,6 +237,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Ekzamen" Relationship="Self.FK_Ekzamen_Studenti1" FromRole="Studenti" ToRole="Ekzamen" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_Studenti_Groups1" FromRole="Studenti" ToRole="Groups" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Uchebnii_plan">
           <Key>
@@ -261,6 +264,7 @@
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Ekzamen_Disciplini1">
           <End Role="Disciplini" Type="Self.Disciplini" Multiplicity="0..1" />
@@ -403,6 +407,7 @@
           <EntitySetMapping Name="Studenti">
             <EntityTypeMapping TypeName="Model.Studenti">
               <MappingFragment StoreEntitySet="Studenti">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="N_zach_knigi" ColumnName="N_zach_knigi" />
                 <ScalarProperty Name="N_group" ColumnName="N_group" />
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
@@ -433,6 +438,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Role" ColumnName="Role" />

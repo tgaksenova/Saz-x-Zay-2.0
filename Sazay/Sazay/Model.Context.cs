@@ -16,7 +16,7 @@ namespace Sazay
     public partial class Entities : DbContext
     {
         private static Entities _context;
-        
+
 
         public Entities()
             : base("name=Entities")
@@ -28,6 +28,7 @@ namespace Sazay
                 _context = new Entities();
             return _context;
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
